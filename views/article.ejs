@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="keywords" content=<%= data.keywords %>>
+        <title><%= data.heading %></title>
+        <link rel="stylesheet" href="../css/styles.css">
+        <link rel="stylesheet" href="../css/selector.css">
+    </head>
+    <body>
+        <header class="navigation">
+            <form action="/" method="get"><button class="logo" type="submit"><%= webSiteName %></button></form>
+            <div class="quickLinks">
+                <a href="#webDesign">Web Design</a>
+                <a href="#appDesign">App Design</a>
+            </div>
+        </header>
+        <script>
+            window.addEventListener('scroll', function(){
+                const header = this.document.querySelector('header');
+                header.classList.toggle("sticky", this.window.scrollY > 10);
+            });
+        </script>
+
+
+<div class="wholePage">
+    <div class="articleSection">
+        <div class="relatedImage">
+            <img src=<%= data.imgLink %> alt="">
+        </div>
+        <h1 class="headingArticle"><%= data.heading %></h1>
+        <div class="content1"></div>
+
+        <div class="ad">
+            <div class="adBillBoard">
+                <p>Ads goes here</p>
+            </div>
+        </div>
+
+        <div class="content2"></div>
+        <div class="content3"></div>
+        
+
+        <!-- Reconded Articles -->
+        <h1 class="recommendedHeading">Recommended Articles</h1>
+        <div class="recommendedSection">
+            <% for(let i=0; i<5; i++){%>
+                <% if(recommended[i].name != data.name){ %>
+                    <div class="articleBox">
+                        <div class="imgBox">
+                            <img src=<%= recommended[i].imgLink %> alt="Image should be here">
+                        </div>
+                        <div class="contentBox">
+                            <div class="article-Heading-Box"><h1><%= recommended[i].heading %></h1></div>
+                            <div class="article-About-Box"><h3><%= recommended[i].aboutPost %></h3></div>
+                            <form action=<%= recommended[i].name %> method="get"><button type="submit" class="read-article">Read Article</button></form>
+                        </div>
+                    </div>
+                <% } %>
+            <% } %>
+        </div>
+
+
+
+    </div>
+    <div class="adSection">
+        <div class="halfpageAd">
+            <p>Ads goes here</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    const newContent1= <%- JSON.stringify(data.content1) %>;
+    const newContent2= <%- JSON.stringify(data.content2) %>;
+    const newContent3= <%- JSON.stringify(data.content3) %>;
+    document.querySelector(".content1").innerHTML = newContent1;
+    document.querySelector(".content2").innerHTML = newContent2;
+    document.querySelector(".content3").innerHTML = newContent3;
+</script>
+
+
+<%- include('./partials/footer'); -%>

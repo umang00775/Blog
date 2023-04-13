@@ -1,0 +1,289 @@
+<%- include('./partials/header'); -%>
+
+<div class="wholePage">
+
+
+    <div class="articleSection">
+        <div class="relatedImage">
+
+
+            <!-- edit image src -->
+            <img src="https://bl6pap004files.storage.live.com/y4m45hHrbeKzzHBaSKRnBIsfP-fFvgmYP9IIt9fe380bR6yrkf7PegiyuZwHyYyaqBpwqj8d1jfcul0qcJ852kelimQ38IsKluJY6Yp-xAYVZF6kKN1zFIHQlZBSlo-WsjUNCWFbMYI8LOYGNhdGvRvvfcuAUBS6353ZaIRFo3Bg0uB8pKv0vRJFOHY8_F6bfnW?width=1900&height=1034&cropmode=none" alt="">
+
+
+        </div>
+
+        <h1 class="headingArticle">
+
+
+            <!-- write heading here -->
+            How to use google for authentication?
+
+
+        </h1>
+
+        <div class="content1">
+
+
+            <!-- write content1 here -->
+            <h1 class="article-heading">What is Google OAuth-2.0?</h1>
+            <h1>The Google OAuth 2.0 endpoint supports web server applications that use languages and frameworks such as PHP, Java, Python, Ruby, and ASP.NET.<br />The authorization sequence begins when your application redirects a browser to a Google URL; the URL includes query parameters that indicate the type of access being requested. (Source : Google developers)</h1>
+            <h1>In this article, we are going to implement OAuth 2.0 using <a href="https://www.passportjs.org/" target="_blank" rel="noopener noreferrer" class="otherLink">passportjs</a>.</h1>
+
+
+
+
+            <!-- content1 ends here -->
+
+
+
+        </div>
+        <div class="ad">
+            <div class="adBillBoard">
+                <!-- Ads -->
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8878970959944694"crossorigin="anonymous"></script>
+                <ins class="adsbygoogle"
+                        style="display:block; text-align:center;"
+                        data-ad-layout="in-article"
+                        data-ad-format="fluid"
+                     data-ad-client="ca-pub-8878970959944694"data-ad-slot="5018667351"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <!-- Ads -->
+            </div>
+        </div>
+        <div class="content2">
+
+
+            <!-- write content2 here -->
+            <h1 class="article-heading">Implementation</h1>
+            <h1 class="littleBold">Step 1</h1>
+            <h1>Firstly, create app.js & auth.js file in your working directory.</h1>
+            <h1>Now create "views" directory and inside this create index.ejs & result.ejs files.</h1>
+            <h1>Run the npm init command and set app.js as an entry point, then install express, express-session, passport, ejs, body-parser, passport-google-oauth2.</h1>
+            <div class="codeSection">
+                <textarea class="singleLineCode" disabled>
+npm i express express-session ejs body-parser passport passport-google-oauth2
+                </textarea>
+            </div>
+            <h1 class="littleBold">Step 2</h1>
+            <h1>Now create anchorlink in index.ejs and apply style to it and set href as "/auth/google"</h1>
+            <h1 class="codeFileHeading">index.ejs</h1>
+            <div class="codeSection">
+                <textarea class="code" disabled>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                font-family: Poppins;
+            }
+            body{
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            a{
+                font-size: 25px;
+                text-decoration: none;
+                color: black;
+                padding: 5px 10px;
+                border-radius: 5px;
+                background-color: crimson;
+            }
+        </style>
+        <title>Google OAuth2.0</title>
+    </head>
+    <body>
+        <a href="/auth/google">Continue with google</a>
+    </body>
+</html>
+                </textarea>
+            </div>
+            <h1 class="littleBold">Step 3</h1>
+            <h1>Now go to <a href="https://console.cloud.google.com/getting-started" target="_blank" rel="noopener noreferrer" class="otherLink">google cloud console</a> and create new project.</h1>
+            <div class="largeImageContainer">
+                <img src="https://bl6pap004files.storage.live.com/y4mAZdh6BJX1sj2yIeNAnaOHrsB-9Zrbh9rZE7RkD7Fo_a9ZWx1jrQ6UF-nwhjLbf5xi8eI-bDF9PGxce85czHc3KGLPKN44mH4kH6zYvmvMTki-iiX7gP5XDoDWsPuDxSNR0TeQH6SsAVe03YDe0mUWZlaE4aTIEnBoddlzpWGofAZ9paVKRNOmvSVqWZ6K8TD?width=1920&height=890&cropmode=none" alt="">
+            </div>
+            <h1>After creating project hover on APIs & Services and click on OAuth consent screen.</h1>
+            <div class="largeImageContainer">
+                <img src="https://bl6pap004files.storage.live.com/y4mNd2W8lR2fS8eEkf_4dDd3feq3-eTJ1qDPB7oxtCvLof70fdSlxQrV5LtrK27sTlX1LV96QXqDUyocsiPvEMBvdleqbuXMEALe0iioPtmot9I6tS_RLa-Bl79G0N_1tY-Dxdg6lIzm8UX_OpnSVT14BVmgqKBUM7pBYlK17oYnkanmziE4vpU375UZsIxNoij?width=1920&height=892&cropmode=none" alt="">
+            </div>
+            <h1>Select user type as internal and create.</h1>
+            <div class="largeImageContainer">
+                <img src="https://bl6pap004files.storage.live.com/y4mpy70SDnm1XZCCwf8NPyKs7bkoqevW6A_49HNGlDJss5eqQnX7AUjwSDC5yw-OIEd7Gh_kZrPcYRpR3CXnzS-hR86dgdflOEXIdRuMOBEfdqk7M9jflEsZyE0sAaZHruHjfoPA4VhQqKwKz5dYmvZSwEFa0PbmzOGIagX5_578tti2QTYPhKvTMwD-yDFt-Z6?width=1920&height=888&cropmode=none" alt="">
+            </div>
+            <h1 class="littleBold">Step 4</h1>
+            <h1>Click on Credentials and then click on OAuth client ID.</h1>
+            <div class="largeImageContainer">
+                <img src="https://bl6pap004files.storage.live.com/y4m2dis_iWA7uzEFNIsuDxdOa20KwJuvGAUHH7r-8lJUjajFeyvnyWq43ZJCRIuKig4PRi9ENlP-1lV0vV3nS6SYrK6b-t2qFuZJ_I84g2eSLeFlq59sK8jdvLNef_dKWkngx7O7H9UxLVTYIP3ZGZu6CcflRz_8LISvVUkOY1PxkicLVpnNkiUr4GEk7qSA0mN?width=1920&height=886&cropmode=none" alt="">
+            </div>
+            <h1>Select Web application as Application type.</h1>
+            <div class="largeImageContainer">
+                <img src="https://bl6pap004files.storage.live.com/y4mAeBLKdGvLE-PhAhmKNzM6bVpAfM6Fwb0MK3LnxmLRn6FF-7yWUQgg1R7PuYe6UZlBRAJan5Gjq91mTguYGqMmpWNCQ205Uh11DJARLOEJcSOY3zeEBx-XIXL_YyRhURggwR_yEZGTeMI9lqi0FUIcpnKlSweoQQ8d0FhWhpS-lGSTRCeHUSUKJBNsVDGN3_M?width=1920&height=888&cropmode=none" alt="">
+            </div>
+            <h1>Set name as Test.</h1>
+            <div class="largeImageContainer">
+                <img src="https://bl6pap004files.storage.live.com/y4mY1dNAb-HNiFL7mMAUJTlK8enOAYc9XCdI6su5tECl_W5v4qazqzxKRmYBdpNZG4bYR1rM6TpIjywbLrBWJ4OaJNjjf-60o08MiPh9ex7gKfyJfx_YVx29mmQHPceMHiaV4u4eVfHd6lcV0sgqtpBWl4m8Iqad-hde7s7OfwlEx-kL0ip0Cje90f3GVT8LukJ?width=1920&height=883&cropmode=none" alt="">
+            </div>
+            <h1>Now set Authorized Javascript origins and Authorized redirect URI as following and then click on create.</h1>
+            <div class="largeImageContainer">
+                <img src="https://bl6pap004files.storage.live.com/y4mVaI-7tr6xRgws6HGzkN62kXtNbEQAb2QYi1CcwGCVliuE7ZbMzRa5kgIjJ8LdYmu73HjXTabPh8rQxRUv4XSw___kt2QFoQBNokMjtFQnpnwjuht4M_zys7k0IsPXwCWlxDa5yGTPnk3rkStvWLjqmNOXvNtx-mEsB_yzHEfbslMv7bD-WRn9GFsLzZIeqVz?width=1920&height=886&cropmode=none" alt="">
+            </div>
+            <h1>After clicking on create button you will see the following pop-up.</h1>
+            <div class="largeImageContainer">
+                <img src="https://bl6pap004files.storage.live.com/y4mg27fiM-Xwek7fRqElZ3XeHe7nZp6_hyEfZjim0-wMpHhV6TDiT2VZwqHXTywuw1XWn68v6MJoiKbp3jqkDTNYMNw-BIM3jzNqLZFqRFUuq0edkiajBPNAOc0yHE4KVJCrQvJFsMOd3LLFFCWp_xAsp7uroIbX95T9vnWj6siw3ZELS4bTxoO9q3aDVtI_9Fj?width=1920&height=887&cropmode=none" alt="">
+            </div>
+            <h1 class="littleBold">Step 5</h1>
+            <h1>Now create GoogleStrategy in auth.js file.</h1>
+            <h1>Use your google client id and secret.</h1>
+            <h1>Reference : <a href="https://www.passportjs.org/packages/passport-google-oauth2/" target="_blank" rel="noopener noreferrer" class="otherLink">passport-google-oauth2</a>.</h1>
+            <h1 class="codeFileHeading">auth.js</h1>
+            <div class="codeSection">
+                <textarea class="code" disabled>
+const passport= require('passport');
+const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
+
+const GOOGLE_CLIENT_ID = "520503138012-ui9enrhs8s6qte8amrp0amldptm1uh52.apps.googleusercontent.com";
+const GOOGLE_CLIENT_SECRET = "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";
+
+passport.use(new GoogleStrategy({
+    clientID:     GOOGLE_CLIENT_ID,
+    clientSecret: GOOGLE_CLIENT_SECRET,
+    callbackURL: "http://localhost:3000/auth/google/callback",
+    passReqToCallback   : true
+  },
+  function(request, accessToken, refreshToken, profile, done) {
+    return done(null, profile);
+  }
+));
+
+passport.serializeUser((user,done)=>{
+    done(null, user);
+});
+
+passport.deserializeUser((user,done)=>{
+    done(null, user);
+});
+                </textarea>
+            </div>
+            <h1 class="littleBold">Step 6</h1>
+            <h1>Now require auth.js file in app.js and write code for all the routes.</h1>
+            <h1 class="codeFileHeading">app.js</h1>
+            <div class="codeSection">
+                <textarea class="code" disabled>
+const express = require('express');
+const session = require('express-session');
+const passport = require('passport');
+const port = 3000;
+require('./auth');
+
+const app = express();
+app.set('view engine', 'ejs');
+
+function isLoggedIn(req, res, next) {
+  req.user ? next() : res.sendStatus(401);
+}
+
+app.use(session({ secret: 'cats', resave: false, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.get('/', (req, res) => {
+    res.render('index');
+});
+
+app.get('/auth/google',
+  passport.authenticate('google', { scope: [ 'email', 'profile' ] }
+));
+
+app.get( '/auth/google/callback',
+  passport.authenticate( 'google', {
+    successRedirect: '/result',
+    failureRedirect: '/auth/google/failure'
+  })
+);
+
+app.get('/result', isLoggedIn, (req, res) => {
+    const data = {
+        name : req.user.displayName,
+        email : req.user.email
+    }
+  res.render('result', {data:data});
+});
+
+app.get('/auth/google/failure', (req, res) => {
+  res.send('Failed to authenticate..');
+});
+
+app.listen(port, (req,res)=>{
+    console.log(`Listening to port ${port}`);
+});
+                </textarea>
+            </div>
+            <h1 class="littleBold">Step 7</h1>
+            <h1>Now go to localhost:3000 in your browser and click on Continue with google button.</h1>
+            <div class="largeImageContainer">
+                <img src="https://bl6pap004files.storage.live.com/y4mNF3lDPMqpxnDtFYtg_qbfJleHH-WiRMSCle-jC6wA8dmLWWQCM9eqsFu7-qFsOyNAQ6SsENAwssMrvBgyc4qFOPy-3YdZxb0vVJdXCK8iaBAY7IIIESC9KbQ4ke4T2ujIfxSFf7rcAK_VAbg976gIj5Jg37cJzLMhi6I5w1shr3CHSwo-WEuyEydcpBYagy-?width=1920&height=882&cropmode=none" alt="">
+            </div>
+            <div class="largeImageContainer">
+                <img src="https://bl6pap004files.storage.live.com/y4mdi-zKk5IWJlvtgPlIiTsWj3Si5P_0wW572LFWcpLXlGJU32WJFiayAuGb-y9tevsJELQCWeGkcdzEmM0Z376BOzuEYuDsI4Nm1CZc6INUn78jb7-oT8JChcg89jVwfKxUE9Re245C0U1LbRnHZc7WmOsbbWHgPMCdCkh7ddlJu9jkwIdeLG12awIkuWWRvqb?width=1920&height=891&cropmode=none" alt="">
+            </div>
+            <h1>After selecting an account, you will see the following screen.</h1>
+            <div class="largeImageContainer">
+                <img src="https://bl6pap004files.storage.live.com/y4mdiBuKIClOti1BgWEbKvHE5Jsi8bstH9h2TbH8hKCZ-x7k1LOzY0NvE9pygH34B-JQhzKod-Uh1mEUj4nu4sC6L0V9ISDz97yJBDmWqI2KYhLdEWbAlqV1B4Ks4GUUBV7dpzAYtzpEeiuuwPuwfc7SRcXUSjgknlRuPyN6tenpjg4SpdOXEThdDGOrpEUVRA7?width=1920&height=887&cropmode=none" alt="">
+            </div>
+
+
+
+            <!-- content2 end here -->
+            <!--***************************************************************************-->
+
+
+
+
+
+
+        </div>
+
+        <!-- write content3 here -->
+        <div class="content3">
+            <h1>You can download project from <a href="https://drive.google.com/file/d/1Y5WiVvrRfeENpCF4kkx4fb67ovKCYOf8/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="otherLink">here</a>.</h1>
+        </div>
+        <!-- content3 ends here -->
+
+    </div>
+    <div class="adSection">
+        <div class="halfpageAd">
+            <!-- Ads -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8878970959944694" crossorigin="anonymous"></script>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-format="autorelaxed"
+                 data-ad-client="ca-pub-8878970959944694"
+                 data-ad-slot="8926122779"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            <!-- Ads -->
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<%- include('./partials/footer'); -%>
