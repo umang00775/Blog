@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/styles.css">
+        <link rel="stylesheet" href="../css/selector.css">
+        <title><%= data.title %></title>
+    </head>
+    <body>
+        <header class="navigation">
+            <form action="/" method="get"><button class="logo" type="submit"><%= data.webSiteName %></button></form>
+            <div class="quickLinks">
+                <a href="#webDesign">Web Design</a>
+                <a href="#appDesign">App Design</a>
+                <a href="#appDesign">Profile</a>
+            </div>
+        </header>
+        <script>
+            window.addEventListener('scroll', function(){
+                const header = this.document.querySelector('header');
+                header.classList.toggle("sticky", this.window.scrollY > 10);
+            });
+        </script>

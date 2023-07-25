@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/styles.css">
+        <link rel="stylesheet" href="../css/selector.css">
+        <title><%= data.title %></title>
+    </head>
+    <body>
+        <header class="navigation">
+            <form action="/" method="get"><button class="logo" type="submit"><%= data.webSiteName %></button></form>
+            <div class="quickLinks">
+                <a href="#webDesign">Web Design</a>
+                <a href="#appDesign">App Design</a>
+                <a href="/signup"><%= fullname %></a>
+            </div>
+        </header>
+        <script>
+            window.addEventListener('scroll', function(){
+                const header = this.document.querySelector('header');
+                header.classList.toggle("sticky", this.window.scrollY > 10);
+            });
+        </script>
+
+
+
+
+
+<div class="banner">
+    <div class="all">
+        <div class="left">
+            <div class="content">
+                <h1>
+                    <span>Become</span>
+                    <span>a</span>
+                    <span>professional</span>
+                    <span>in</span>
+                    <span>either</span>
+                    <span>field</span>
+                </h1>
+                <div class="bannerLinksSection">
+                    <a href="#explore" class="exploreLink">Explore it up</a>
+                    <a href="#explore" class="learnMoreLink">Learn more</a>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="right-container">
+                <img src="./images/banner.jpg" alt="" class="bannerImage">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Section -->
+<!-- Design blogs -->
+
+<section id="explore">
+    <div class="headBox">
+        <h1 class="sectionHeading"><%= data.design.heading %></h1>
+        <form action="/more" method="post"><input type="hidden" name="query" value="design"><button type="submit" class="moreButton">More</button></form>
+    </div>
+    <div class="articles">
+        <% for(let i=0; i<5; i++){%>
+            <div class="articleBox">
+                <div class="imgBox">
+                    <img src=<%= data.design.blog[i].imgLink %> alt="Image should be here">
+                </div>
+                <div class="contentBox">
+                    <div class="article-Heading-Box"><h1><%= data.design.blog[i].heading %></h1></div>
+                    <div class="article-About-Box"><h3><%= data.design.blog[i].aboutArt %></h3></div>
+                    <form action=<%= data.design.blog[i].name %> method="get"><button type="submit" class="read-article">Read Article</button></form>
+                </div>
+            </div>
+        <% } %>
+    </div>
+</section>
+
+<!-- Web development blogs -->
+<section>
+    <div class="headBox">
+        <h1 class="sectionHeading"><%= data.webDev.heading %></h1>
+        <form action="/more" method="post"><input type="hidden" name="query" value="webDev"><button type="submit" class="moreButton">More</button></form>
+    </div>
+    <div class="articles">
+        <% for(let i=0; i<5; i++){%>
+            <div class="articleBox">
+                <div class="imgBox">
+                    <img src=<%= data.webDev.blog[i].imgLink %> alt="Image should be here">
+                </div>
+                <div class="contentBox">
+                    <div class="article-Heading-Box"><h1><%= data.webDev.blog[i].heading %></h1></div>
+                    <div class="article-About-Box"><h3><%= data.webDev.blog[i].aboutArt %></h3></div>
+                    <form action=<%= data.webDev.blog[i].name %> method="get"><button type="submit" class="read-article">Read Article</button></form>
+                </div>
+            </div>
+        <% } %>
+    </div>
+</section>
+
+
+<!-- subscribe to newletter -->
+<div class="subscribe">
+    <div class="form-subscribe">
+        <h1>Subscribe to newletter</h1>
+        <% if(subscribed===true) { %> 
+            <p class="subscribed-text">You have subscribed newletter</p>
+        <% }else {%>
+            <div class="getEmail">
+                <form action="/subscribe" method="post">
+                    <input type="email" name="email" placeholder="Email" required="required">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        <% } %>
+        
+    </div>
+</div>
+
+<%- include('./partials/footer'); -%>
+
+<!--I am Umang Rathod...-->
