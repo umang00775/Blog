@@ -7,7 +7,7 @@ const passport = require('passport');
 const bcrypt = require('bcrypt');
 const app = express();
 require('./auth'); //for google OAuth2.0
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 
 /* From disk */
